@@ -1,0 +1,39 @@
+@import './components/sidebar/styles/sidebar.scss';
+@import './components/navbar/styles/navbar.scss';
+@import './components/iconButton/styles/iconButton.scss';
+@import './components/Home/styles/home.scss';
+@import './utils';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: jetbrains;
+  color: #fff;
+}
+
+body {
+  background: $darkGray;
+}
+
+li {
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  height: $maxContainerHeight;
+  max-width: $maxContainerWidth;
+  @include positionMargin;
+  background: $darkerGray;
+  @include flex-col;
+}
+
+img {
+  object-fit: contain;
+}
+
+@font-face {
+  font-family: jetbrains;
+  src: url('./fonts/JetBrainsMono-Regular.ttf');
+}

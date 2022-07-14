@@ -1,0 +1,42 @@
+$sideBarWidth: 75px;
+$navbarHeight: 60px;
+$maxContainerHeight: calc(100vh - #{$navbarHeight});
+$maxContainerWidth: calc(100% - #{$sideBarWidth});
+
+// colors
+$darkerGray: #0c0c10;
+$darkGray: #16191c;
+$lightGray: #9296a9;
+$gray: #565963;
+$blueGray: #1d2126;
+
+// pastel colors
+$pinkAccent: #f91889;
+$redAccent: #ff4d6d;
+$salmonAccent: #ff7c56;
+
+// mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin positionMargin {
+  position: absolute;
+  left: $sideBarWidth;
+  top: $navbarHeight;
+  padding: 10px;
+}
