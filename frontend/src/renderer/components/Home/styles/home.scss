@@ -1,0 +1,9 @@
+.home__icons {
+  width: 100%;
+  height: fit-content;
+  @include flex-center;
+
+  & > :not(:first-child) {
+    margin-left: 20px;
+  }
+}
