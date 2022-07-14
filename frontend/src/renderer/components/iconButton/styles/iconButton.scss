@@ -1,0 +1,5 @@
+.iconButton {
+  border-radius: 10px;
+  @include flex-center;
+  cursor: pointer;
+}
