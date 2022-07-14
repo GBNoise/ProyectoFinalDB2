@@ -1,0 +1,44 @@
+@import '../../../utils';
+
+.navbar {
+  width: calc(100% - #{$sideBarWidth});
+  height: $navbarHeight;
+  background: $darkGray;
+  border-bottom: $gray 1px solid;
+  position: absolute;
+  top: 0;
+  left: $sideBarWidth;
+  padding: 10px;
+
+  @include flex-center;
+  justify-content: flex-start;
+  overflow: hidden;
+  .navbar__logo {
+    width: fit-content;
+    height: 100%;
+    @include flex-center;
+    overflow: hidden;
+    filter: grayscale(100%);
+    text-decoration: none;
+    img {
+      width: 100px;
+    }
+
+    .navbar__title {
+      font-size: 1rem;
+      transition: all 0.5s ease;
+      animation: expandTitle 1s forwards;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+@keyframes expandTitle {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
