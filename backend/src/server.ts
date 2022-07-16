@@ -2,6 +2,7 @@ import { Application } from "express";
 import express from "express";
 import { router as userRouter } from "./Routers/usersRouter";
 import { router as linksRouter } from "./Routers/linksRouter";
+import { router as productorRouter } from "./Routers/productorRouter";
 import cors from "cors";
 import { config } from "dotenv";
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/users", userRouter);
 app.use("/links", linksRouter);
+app.use("/productor", productorRouter);
 
 const PORT = process.env.PORT || 8000;
 
