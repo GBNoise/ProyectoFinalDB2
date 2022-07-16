@@ -14,6 +14,14 @@ export type Link = {
   AppUserID: number;
 };
 
+export type Productor = {
+  ProductorID?: number;
+  Nombre: string;
+  Identidad: string;
+};
+
+export type Tables = Productor | AppUser | Link;
+
 export interface ServerResponse {
   message: string;
   object?: any;
