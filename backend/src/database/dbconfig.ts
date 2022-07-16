@@ -1,5 +1,5 @@
 import { Connection, Request } from "tedious";
-import { AppUser, Link, ServerResponse } from "../Models/models";
+import { AppUser, Link, ServerResponse, Tables } from "../Models/models";
 import { config } from "dotenv";
 config();
 
@@ -7,11 +7,26 @@ export const enum DBTables {
   // Tables
   AppUser = "AppUser",
   Link = "Link",
+  //
+  Productor = "Productor",
+  TipoDeSuelo = "TipoDeSuelo",
+  TipoDeRiego = "TipoDeRiego",
+  Producto = "Producto",
+  Lote = "Lote",
+  Cliente = "Cliente",
+  Banco = "Banco",
+  TipoDeMoneda = "TipoDeMoneda",
+  CuentaBancaria = "CuentaBancaria",
+  Bodega = "Bodega",
+  Inventario = "Inventario",
+  Proveedor = "Proveedor",
+  Cheque = "Cheque",
+  Compra = "Compra",
+  Venta = "Venta",
+  Deposito = "Deposito",
 }
 
-export const enum DBViews {
-  vUserLink = "vUserLink",
-}
+export const enum DBViews {}
 
 interface DBResponse {
   columns: string[];
@@ -116,7 +131,7 @@ export const executeSelect = (
 // Insert
 export const executeInsert = (
   to: DBTables,
-  object: AppUser | Link
+  object: Tables
 ): Promise<ServerResponse> => {
   return new Promise((resolve, reject) => {
     if (!isConnected)
@@ -180,7 +195,7 @@ export const executeDeleteWhereID = (
 // Update
 export const executeUpdateWhereID = (
   from: DBTables,
-  object: AppUser | Link
+  object: Tables
 ): Promise<ServerResponse> => {
   return new Promise((resolve, reject) => {
     if (!isConnected) reject(connectionError);
