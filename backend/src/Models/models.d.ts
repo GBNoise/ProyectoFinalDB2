@@ -20,7 +20,19 @@ export type Productor = {
   Identidad: string;
 };
 
-export type Tables = Productor | AppUser | Link;
+export type TipoDeSuelo = {
+  TipoDeSueloID: number;
+  Nombre: string;
+  Descripcion: string;
+};
+
+export type TipoDeRiego = {
+  TipoDeRiegoID: number;
+  Nombre: string;
+  Descripcion: string;
+};
+
+export type Tables = Productor | AppUser | Link | TipoDeSuelo | TipoDeRiego;
 
 export interface ServerResponse {
   message: string;
