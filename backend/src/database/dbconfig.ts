@@ -1,6 +1,7 @@
 import { Connection, Request } from "tedious";
 import { AppUser, Link, ServerResponse, Tables } from "../Models/models";
 import { config } from "dotenv";
+import e from "express";
 config();
 
 export const enum DBTables {
@@ -40,7 +41,10 @@ interface SelectProps {
   from: DBTables | DBViews;
   whereID?: number | string;
   whereFK?: number | string;
+  whereProps?: object;
   reference?: DBTables;
+  page?: number;
+  includeSimilar?: boolean;
 }
 
 const connectionError: ServerResponse = {
@@ -75,14 +79,38 @@ connection.connect();
 export const executeSelect = (
   options: SelectProps
 ): Promise<ServerResponse> => {
-  const { from, whereID, whereFK, reference } = options;
+  const {
+    from,
+    whereID,
+    whereFK,
+    reference,
+    page,
+    whereProps,
+    includeSimilar,
+  } = options;
 
   return new Promise((resolve, reject) => {
     if (!isConnected) reject(connectionError);
 
-    let query = `SELECT * FROM ${from};`;
+    let query = `SELECT * FROM ${from}`;
+
+    if (page) {
+      const start = 10 * (page - 1);
+      const end = 10 * page;
+      query += ` ORDER BY ${from}ID OFFSET ${start} ROWS FETCH NEXT (${end} - ${start}) ROWS ONLY`;
+    }
 
     if (whereID) query = `SELECT * FROM ${from} WHERE ${from}ID = ${whereID}`;
+
+    if (whereProps) {
+      query += " WHERE ";
+      Object.entries(whereProps).forEach(([key, value]) => {
+        if (includeSimilar) query += `${key} LIKE '${value}%' and`;
+        else query += `${key} = '${value}' and`;
+      });
+
+      query = query.replace(/(and)/gm, "");
+    }
 
     if (whereFK && reference)
       query = `SELECT * FROM ${from} WHERE ${reference}ID = ${whereFK}`;
