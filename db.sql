@@ -35,14 +35,13 @@ CREATE TABLE Finca (
             REFERENCES Productor
 )
 
-
 CREATE TABLE Producto (
     ProductoID int IDENTITY(1,1),
     Nombre varchar(100) unique not null,
     TipoDeSueloID int not null,
     CONSTRAINT pkProducto PRIMARY KEY(ProductoID),
     CONSTRAINT fkProductoTipoDeSuelo 
-        FOREIGN KEY(ProductoID)
+        FOREIGN KEY(TipoDeSueloID)
             REFERENCES TipoDeSuelo
 )
 
@@ -115,7 +114,6 @@ CREATE TABLE Inventario (
         FOREIGN KEY(BodegaID)
             REFERENCES Bodega
 )
-
 CREATE TABLE Proveedor(
     ProveedorID int IDENTITY(1,1),
     Nombre varchar(100) unique not null,
