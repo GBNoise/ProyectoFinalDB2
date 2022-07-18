@@ -25,6 +25,17 @@ CREATE TABLE TipoDeRiego(
     CONSTRAINT pkTipoDeRiego PRIMARY KEY(TipoDeRiegoID)
 )
 
+CREATE TABLE Finca (
+    FincaID int IDENTITY(1,1),
+    Nombre varchar(100) not null,
+    ProductorID int not null,
+    CONSTRAINT pkFinca PRIMARY KEY(FincaID),
+    CONSTRAINT fkFincaProductor
+        FOREIGN KEY(ProductorID)
+            REFERENCES Productor
+)
+
+
 CREATE TABLE Producto (
     ProductoID int IDENTITY(1,1),
     Nombre varchar(100) unique not null,
@@ -42,6 +53,7 @@ CREATE TABLE Lote (
     TipoDeSueloID int not null,
     TipoDeRiegoID int not null,
     ProductoID int not null,
+    FincaID int not null,
     CONSTRAINT pkLote PRIMARY KEY(LoteID),
     CONSTRAINT fkLoteTipoDeSueloID 
         FOREIGN KEY(TipoDeSueloID)
@@ -51,7 +63,10 @@ CREATE TABLE Lote (
             REFERENCES TipoDeRiego,
     CONSTRAINT fkLoteProducto
         FOREIGN KEY(ProductoID)
-            REFERENCES Producto
+            REFERENCES Producto,
+    CONSTRAINT fkLoteFinca
+        FOREIGN KEY(FincaID)
+            REFERENCES Finca
 )
 
 CREATE TABLE Cliente(
