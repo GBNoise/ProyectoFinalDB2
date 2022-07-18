@@ -7,12 +7,22 @@ import {
 } from "../database/dbconfig";
 import { Productor, ServerResponse } from "../Models/models";
 
-export const getAllProductores = (): Promise<ServerResponse> => {
-  return executeSelect({ from: DBTables.Productor });
+export const getAllProductores = (page: number): Promise<ServerResponse> => {
+  return executeSelect({ from: DBTables.Productor, page });
 };
 
 export const getProductorByID = (id: number): Promise<ServerResponse> => {
   return executeSelect({ from: DBTables.Productor, whereID: id });
+};
+
+export const getProductorByNombre = (
+  nombre: string
+): Promise<ServerResponse> => {
+  return executeSelect({
+    from: DBTables.Productor,
+    whereProps: { Nombre: nombre },
+    includeSimilar: true,
+  });
 };
 
 export const createProductor = (
