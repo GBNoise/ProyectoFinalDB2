@@ -5,6 +5,7 @@ import {
   deleteProductorWithID,
   getAllProductores,
   getProductorByID,
+  getProductorByNombre,
   updateProductorWithID,
 } from "../Service/productor.service.js";
 
@@ -12,7 +13,8 @@ export const router = Router();
 
 const getProductoresRoute = async (req: Request, res: Response) => {
   try {
-    const response: ServerResponse = await getAllProductores();
+    const page = req.query.page as string;
+    const response: ServerResponse = await getAllProductores(parseInt(page));
     return res.status(response.statusCode).send(response);
   } catch (e) {
     return res.send(e);
@@ -32,6 +34,17 @@ const getProductorByIDRoute = async (req: Request, res: Response) => {
   }
 };
 router.get("/:ProductorID", getProductorByIDRoute);
+
+const getProductorByNombreRoute = async (req: Request, res: Response) => {
+  try {
+    const { Nombre } = req.params;
+    const response: ServerResponse = await getProductorByNombre(Nombre);
+    return res.status(response.statusCode).send(response);
+  } catch (e) {
+    return res.status(500).send(e);
+  }
+};
+router.get("/nombre/:Nombre", getProductorByNombreRoute);
 
 const createProductorRoute = async (req: Request, res: Response) => {
   try {
