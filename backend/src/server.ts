@@ -3,6 +3,8 @@ import express from "express";
 import { router as userRouter } from "./Routers/usersRouter";
 import { router as linksRouter } from "./Routers/linksRouter";
 import { router as productorRouter } from "./Routers/productorRouter";
+import { router as tipoDeSueloRouter } from "./Routers/tipodesueloRouter";
+import { router as tipoDeRiegoRouter } from "./Routers/tipoderiegoRouter";
 import cors from "cors";
 import { config } from "dotenv";
 
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/links", linksRouter);
 app.use("/productor", productorRouter);
+app.use("/tipodesuelo", tipoDeSueloRouter);
+app.use("/tipoderiego", tipoDeRiegoRouter);
 
 const PORT = process.env.PORT || 8000;
 
