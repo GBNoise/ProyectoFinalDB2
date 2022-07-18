@@ -12,6 +12,12 @@ CREATE TABLE TipoDeSuelo(
     CONSTRAINT pkTipoDeSuelo PRIMARY KEY(TipoDeSueloID)
 )
 
+
+ALTER TABLE TipoDeSuelo 
+    ADD CONSTRAINT chkNombreDescripcionNotBlank 
+        CHECK(not Nombre = '' and not Descripcion = '')
+
+
 CREATE TABLE TipoDeRiego(
     TipoDeRiegoID int IDENTITY(1,1),
     Nombre varchar(100) unique not null,
