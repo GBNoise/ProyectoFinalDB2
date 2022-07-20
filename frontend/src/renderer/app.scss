@@ -17,6 +17,10 @@
   color: #fff;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: $darkGray;
 }
