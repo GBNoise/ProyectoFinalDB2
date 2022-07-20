@@ -5,10 +5,12 @@ import { DataTableProps } from '../../types/types';
 import { Modal } from '../modal';
 import { globalContext } from 'renderer/contexts/globalContext';
 import axios from '../../axios';
+import { useNavigate } from 'react-router-dom';
 
 export const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
   const { data, columns, endpoint, getData, dependencies } = props;
   const { state, dispatch } = useContext(globalContext);
+  const navigate = useNavigate();
 
   const handleDelete = async (id: number) => {
     await axios
@@ -29,7 +31,11 @@ export const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
         </li>
         {data.map((object) => {
           return (
-            <li>
+            <li
+              onClick={() =>
+                navigate(`${endpoint}/${Object.values(object)[0]}`)
+              }
+            >
               {Object.entries(object).map(([key, value], i) => (
                 <span>
                   {value}
