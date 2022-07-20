@@ -1,4 +1,8 @@
-import { colors, IconButtonProps } from '../../types/types';
+import {
+  colors,
+  IconButtonProps,
+  DashboardCounterProps,
+} from '../../types/types';
 import { Container } from '../container/container';
 import { IconButton } from '../iconButton';
 import {
@@ -6,11 +10,12 @@ import {
   faTractor,
   faWheatAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { DashboardCounter } from '../dashboardCounter';
 
 const icons: IconButtonProps[] = [
-  { color: colors.pinkAccent, size: '1x', icon: faUser },
-  { color: colors.redAccent, size: '1x', icon: faTractor },
-  { color: colors.salmonAccent, size: '1x', icon: faWheatAlt },
+  { color: colors.pinkAccent, size: '2x', icon: faUser, to: '/productores' },
+  { color: colors.redAccent, size: '2x', icon: faTractor, to: '/finca' },
+  { color: colors.salmonAccent, size: '2x', icon: faWheatAlt, to: '/other' },
 ];
 
 export const Home = (): JSX.Element => {
@@ -18,10 +23,21 @@ export const Home = (): JSX.Element => {
     <Container>
       <h1>Home</h1>
       <div className="home__icons">
-        {icons.map(({ icon, size, color }) => {
-          return <IconButton color={color} size={size} icon={icon} />;
+        {icons.map(({ icon, size, color, to }) => {
+          return <IconButton color={color} size={size} icon={icon} to={to} />;
         })}
       </div>
+      {/* <div className="home__dashboard">
+        {dashboard.map((db) => {
+          return (
+            <DashboardCounter
+              count={db.count}
+              icon={db.icon}
+              color={db.color}
+            />
+          );
+        })}
+      </div> */}
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { Connection, Request } from "tedious";
-import { AppUser, Link, ServerResponse, Tables } from "../Models/models";
+import { ServerResponse, Tables } from "../Models/models";
 import { config } from "dotenv";
-import e from "express";
+
 config();
 
 export const enum DBTables {
@@ -13,6 +13,7 @@ export const enum DBTables {
   TipoDeSuelo = "TipoDeSuelo",
   TipoDeRiego = "TipoDeRiego",
   Producto = "Producto",
+  Finca = "Finca",
   Lote = "Lote",
   Cliente = "Cliente",
   Banco = "Banco",
@@ -95,8 +96,8 @@ export const executeSelect = (
     let query = `SELECT * FROM ${from}`;
 
     if (page) {
-      const start = 10 * (page - 1);
-      const end = 10 * page;
+      const start = 100 * (page - 1);
+      const end = 100 * page;
       query += ` ORDER BY ${from}ID OFFSET ${start} ROWS FETCH NEXT (${end} - ${start}) ROWS ONLY`;
     }
 
@@ -162,11 +163,7 @@ export const executeInsert = (
   object: Tables
 ): Promise<ServerResponse> => {
   return new Promise((resolve, reject) => {
-    if (!isConnected)
-      reject({
-        error: "Database connection is not established",
-        statusCode: 500,
-      });
+    if (!isConnected) reject(connectionError);
 
     let query = "";
     let keys = "";
@@ -236,19 +233,26 @@ export const executeUpdateWhereID = (
         whereID = value;
         return;
       }
+      if (!value) return;
 
       query += `${key} = '${value}',`;
     });
 
     query = query.replace(/,$/m, "") + ` WHERE ${from}ID = ${whereID}`;
 
-    // need to make validations before changing password;
-    // need to check if password is provided then hash it
-
-    resolve({
-      message: query,
-      statusCode: 200,
+    const request = new Request(query, (error) => {
+      if (error) reject({ error, statusCode: 500 });
     });
+
+    request.on("requestCompleted", () => {
+      resolve({
+        message: `Sucessfully updated`,
+        object,
+        statusCode: 200,
+      });
+    });
+
+    connection.execSql(request);
   });
 };
 

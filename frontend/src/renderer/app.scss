@@ -2,6 +2,11 @@
 @import './components/navbar/styles/navbar.scss';
 @import './components/iconButton/styles/iconButton.scss';
 @import './components/Home/styles/home.scss';
+@import './components/dashboardCounter/styles/dashboardCounter.scss';
+@import './components/dataTable/styles/DataTable.scss';
+@import './components/Productores/styles/Productores.scss';
+@import './components/tablePanel/styles/tablePanel.scss';
+@import './components/modal/styles/modal.scss';
 @import './utils';
 
 * {
@@ -16,7 +21,8 @@ body {
   background: $darkGray;
 }
 
-li {
+li,
+button {
   cursor: pointer;
 }
 
@@ -27,6 +33,7 @@ li {
   @include positionMargin;
   background: $darkerGray;
   @include flex-col;
+  padding: 40px;
 }
 
 img {

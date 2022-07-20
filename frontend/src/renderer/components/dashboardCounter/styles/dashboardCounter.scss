@@ -1,0 +1,31 @@
+@import '../../../utils';
+
+.dashboardCounter {
+  height: 100%;
+  border-radius: 20px;
+  width: 300px;
+  height: 250px;
+  position: relative;
+
+  @include flex-col-center;
+  .dashboardCounter__icon {
+    opacity: 0.4;
+  }
+
+  p,
+  h3 {
+    position: absolute;
+  }
+
+  p {
+    left: 20px;
+    bottom: 10px;
+    font-size: 40px;
+  }
+
+  h3 {
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

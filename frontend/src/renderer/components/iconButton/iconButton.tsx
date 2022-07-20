@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconButtonProps, SizesProps } from '../../types/types';
+import { Link } from 'react-router-dom';
 
 const sizes: SizesProps = {
   sm: { width: '150px', height: '170px' },
@@ -9,13 +10,14 @@ const sizes: SizesProps = {
 };
 
 export const IconButton: React.FC<IconButtonProps> = (props): JSX.Element => {
-  const { color, size, style, className, icon } = props;
+  const { color, size, style, className, icon, to } = props;
   return (
-    <div
+    <Link
+      to={to}
       className={`iconButton ${className ? className : ''}`}
       style={{ ...style, ...sizes[size], backgroundColor: color }}
     >
-      <FontAwesomeIcon icon={icon} size={'2x'} />
-    </div>
+      <FontAwesomeIcon icon={icon} size="2x" />
+    </Link>
   );
 };
