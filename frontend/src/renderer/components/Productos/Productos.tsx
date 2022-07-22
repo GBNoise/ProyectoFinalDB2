@@ -15,20 +15,29 @@ const icons: IconButtonProps[] = [
   { color: colors.salmonAccent, size: '2x', icon: faWheatAlt, to: '/lote' },
 ];
 
-export const TipoDeRiego = () => {
+export const Productos = () => {
   const { state, dispatch } = useContext(globalContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const getData = async () => {
     await axios
-      .get('/tipoderiego')
+      .get('/producto')
       .then((res) => {
         dispatch({ type: 'setCurrentData', payload: res.data });
       })
       .catch((e) => console.log(e));
-
+    await getDependencies();
     setIsLoading(false);
   };
+
+  const getDependencies = async () => {
+    await axios
+      .get('/tipodesuelo')
+      .then((res) =>
+        dispatch({ type: 'setDependencies', payload: {TipoDeSuelo:res.data.object.rows} })
+      )
+      .catch((e) => console.log(e));
+  }
 
   useEffect(() => {
     getData();
@@ -41,9 +50,9 @@ export const TipoDeRiego = () => {
       columns={state.currentData.object.columns}
       count={state.currentData.object.rows.length}
       icon={faUser}
-      color={colors.redAccent}
-      title="Tipo de Riego"
-      endpoint="/tipoderiego"
+      color={colors.salmonAccent}
+      title="Producto"
+      endpoint="/producto"
       getData={getData}
     />
   ) : (

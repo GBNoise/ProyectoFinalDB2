@@ -9,6 +9,8 @@ import { Finca } from './components/Finca';
 import { Productor } from './components/Productor';
 import { Lotes } from './components/Lotes';
 import { TipoDeSuelo } from './components/TipoDeSuelo';
+import { TipoDeRiego } from './components/TIpoDeRiego';
+import { Productos } from './components/Productos';
 
 export default function App() {
   return (
@@ -24,6 +26,8 @@ export default function App() {
           <Route path="/finca/:fincaID" element={<Home />} />
           <Route path="/lote" element={<Lotes />} />
           <Route path="/tipodesuelo" element={<TipoDeSuelo />} />
+          <Route path="/tipoderiego" element={<TipoDeRiego />} />
+          <Route path="/productos" element={<Productos />} />
         </Routes>
       </GlobalContext>
     </Router>
