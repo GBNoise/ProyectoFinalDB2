@@ -18,7 +18,6 @@ const icons: IconButtonProps[] = [
 
 export const Finca = () => {
   const { state, dispatch } = useContext(globalContext);
-  const [dependencies, setDependencies] = useState<object>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const getData = async () => {
@@ -26,22 +25,29 @@ export const Finca = () => {
       .get('/finca')
       .then(async (res) => {
         dispatch({ type: 'setCurrentData', payload: res.data });
-        await getDependencies();
       })
       .catch((e) => console.log(e));
 
+    await getDependencies();
     setIsLoading(false);
   };
 
   const getDependencies = async () => {
     await axios
       .get('/productor')
-      .then((res) => setDependencies({ productor: res.data }))
+      .then((res) =>
+        dispatch({
+          type: 'setDependencies',
+          payload: { Productor: res.data.object.rows },
+        })
+      )
       .catch((e) => console.log(e));
   };
 
   useEffect(() => {
     getData();
+
+    return () => dispatch({ type: 'dismiss dependencies' });
   }, []);
 
   return !isLoading ? (
@@ -55,7 +61,6 @@ export const Finca = () => {
       title="Fincas"
       endpoint="/finca"
       getData={getData}
-      dependencies={dependencies}
     />
   ) : (
     <h1>Loading</h1>

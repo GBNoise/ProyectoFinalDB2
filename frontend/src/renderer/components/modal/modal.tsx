@@ -70,7 +70,6 @@ export const Modal: React.FC<ModalProps> = (props): JSX.Element => {
             const id = Object.values(state.currentID)[0];
             data[col] = id;
           }
-
           return (
             index > 0 && (
               <span className="modal__inputContainer">
