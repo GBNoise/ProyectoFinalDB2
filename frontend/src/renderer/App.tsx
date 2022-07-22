@@ -1,4 +1,4 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
 import './app.scss';
 import { Navbar } from './components/navbar';
 import { Sidebar } from './components/sidebar';
@@ -12,6 +12,8 @@ import { TipoDeSuelo } from './components/TipoDeSuelo';
 import { TipoDeRiego } from './components/TIpoDeRiego';
 import { Productos } from './components/Productos';
 import { Cliente } from './components/Clientes';
+import { Bancos } from './components/Bancos';
+import { CuentasBancarias } from './components/CuentasBancarias';
 
 export default function App() {
   return (
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/tipoderiego" element={<TipoDeRiego />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/clientes" element={<Cliente />} />
+          <Route path="/bancos" element={<Bancos />} />
+          <Route path="/cuentasbancarias" element={<CuentasBancarias />} />
         </Routes>
       </GlobalContext>
     </Router>
