@@ -20,6 +20,7 @@ import { Inventarios } from './components/Inventarios';
 import { Proveedores } from './components/Proveedores';
 import { Cheques } from './components/Cheques';
 import { Compras } from './components/Compras';
+import { Ventas } from './components/Ventas';
 
 export default function App() {
   return (
@@ -46,6 +47,7 @@ export default function App() {
           <Route path="/proveedores" element={<Proveedores />} />
           <Route path="/cheques" element={<Cheques />} />
           <Route path="/compras" element={<Compras />} />
+          <Route path="/ventas" element={<Ventas />} />
         </Routes>
       </GlobalContext>
     </Router>
