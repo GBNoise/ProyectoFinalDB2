@@ -15,33 +15,20 @@ const icons: IconButtonProps[] = [
   { color: colors.salmonAccent, size: '2x', icon: faWheatAlt, to: '/lote' },
 ];
 
-export const CuentasBancarias = () => {
+export const TipoDeMoneda = () => {
   const { state, dispatch } = useContext(globalContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const getData = async () => {
     await axios
-      .get('/cuentabancaria')
+      .get('/tipodemoneda')
       .then((res) => {
         console.log(res);
         dispatch({ type: 'setCurrentData', payload: res.data });
       })
       .catch((e) => console.log(e));
 
-    await getDependencies();
     setIsLoading(false);
-  };
-
-  const getDependencies = async () => {
-    await axios
-      .get('/tipodemoneda')
-      .then((res) =>
-        dispatch({
-          type: 'setDependencies',
-          payload: { TipoDeMoneda: res.data.object.rows },
-        })
-      )
-      .catch((e) => console.log(e));
   };
 
   useEffect(() => {
@@ -55,9 +42,9 @@ export const CuentasBancarias = () => {
       columns={state.currentData.object.columns}
       count={state.currentData.object.rows.length}
       icon={faUser}
-      color={colors.salmonAccent}
-      title="Cuentas Bancarias"
-      endpoint="/cuentabancaria"
+      color={colors.pinkAccent}
+      title="Tipo de Moneda"
+      endpoint="/tipodemoneda"
       getData={getData}
     />
   ) : (
