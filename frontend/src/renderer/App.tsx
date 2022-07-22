@@ -8,6 +8,7 @@ import { GlobalContext } from './contexts/globalContext';
 import { Finca } from './components/Finca';
 import { Productor } from './components/Productor';
 import { Lotes } from './components/Lotes';
+import { TipoDeSuelo } from './components/TipoDeSuelo';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/finca" element={<Finca />} />
           <Route path="/finca/:fincaID" element={<Home />} />
           <Route path="/lote" element={<Lotes />} />
+          <Route path="/tipodesuelo" element={<TipoDeSuelo />} />
         </Routes>
       </GlobalContext>
     </Router>
