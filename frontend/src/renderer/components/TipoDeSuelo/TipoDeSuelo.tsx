@@ -3,9 +3,8 @@ import {
   faUser,
   faWheatAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { IconButtonProps, ServerResponse } from 'renderer/types/types';
-import React, { useState, useEffect, useContext } from 'react';
-import { colors } from 'renderer/types/types';
+import { IconButtonProps, colors } from 'renderer/types/types';
+import { useState, useEffect, useContext } from 'react';
 import axios from '../../axios';
 import { TablePanel } from '../tablePanel';
 import { globalContext } from 'renderer/contexts/globalContext';

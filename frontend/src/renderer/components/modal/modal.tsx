@@ -1,6 +1,6 @@
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { globalContext } from 'renderer/contexts/globalContext';
 import { ModalProps } from 'renderer/types/types';
 import axios from '../../axios';
