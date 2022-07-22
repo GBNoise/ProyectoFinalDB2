@@ -11,6 +11,7 @@ import { Lotes } from './components/Lotes';
 import { TipoDeSuelo } from './components/TipoDeSuelo';
 import { TipoDeRiego } from './components/TIpoDeRiego';
 import { Productos } from './components/Productos';
+import { Cliente } from './components/Clientes';
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/tipodesuelo" element={<TipoDeSuelo />} />
           <Route path="/tipoderiego" element={<TipoDeRiego />} />
           <Route path="/productos" element={<Productos />} />
+          <Route path="/clientes" element={<Cliente />} />
         </Routes>
       </GlobalContext>
     </Router>
