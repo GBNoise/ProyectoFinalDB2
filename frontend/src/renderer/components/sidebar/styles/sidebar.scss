@@ -1,40 +1,54 @@
 @import '../../../utils';
-.sidebar {
-  width: $sideBarWidth;
-  height: 100vh;
-  max-height: 100vh;
-  background: $darkGray;
-  border-right: 1px solid $gray;
-  padding: 10px;
-  position: absolute;
-  left: 0;
-  @include flex-col-center;
-  justify-content: flex-start;
-  overflow: auto;
-  overflow-x: visible;
+.sidebarContainer {
   position: relative;
-  li {
-    min-width: 50px;
-    min-height: 50px;
-    border-radius: 50%;
+  width: 300px;
+  overflow: scroll;
+  max-height: 100vh;
+  .sidebar {
+    max-width: $sideBarWidth;
     background: $darkGray;
-    @include flex-center;
-    padding: 5px;
-    float: left;
-    .sidebar__link {
-      width: 100%;
-      height: 100%;
+    padding: 10px;
+    @include flex-col-center;
+    justify-content: flex-start;
+    position: absolute;
+    border-right: solid 1px $gray;
+    position: relative;
+    li {
+      border-radius: 50%;
+      background: $darkGray;
       @include flex-center;
-    }
-    span {
-      display: block;
-      z-index: 100000;
-      position: absolute;
-      margin-left: 10px;
-    }
-  }
 
-  & > :not(:first-child) {
-    margin-top: 20px;
+      float: left;
+      .sidebar__link {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+        @include flex-center;
+      }
+      span {
+        display: none;
+        z-index: 10;
+        position: absolute;
+        left: 80px;
+        min-width: 100px;
+        white-space: nowrap;
+        width: fit-content;
+        background: $darkGray;
+        border: solid 1px $gray;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      &:hover {
+        span {
+          display: block;
+        }
+      }
+    }
+
+    & > :not(:first-child) {
+      margin-top: 20px;
+    }
   }
 }

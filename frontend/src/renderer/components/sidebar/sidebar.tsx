@@ -120,17 +120,19 @@ const iconsArr: icons[] = [
 
 export const Sidebar = () => {
   return (
-    <ul className="sidebar">
-      {iconsArr.map(({ icon, title, color, to }): JSX.Element => {
-        return (
-          <li style={{ background: color }}>
-            <Link to={to} className="sidebar__link">
-              <FontAwesomeIcon icon={icon} size="lg" />
-            </Link>
-            <span>{title}</span>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="sidebarContainer">
+      <ul className="sidebar">
+        {iconsArr.map(({ icon, title, color, to }): JSX.Element => {
+          return (
+            <li style={{ background: color }}>
+              <Link to={to} className="sidebar__link">
+                <FontAwesomeIcon icon={icon} size="lg" />
+                <span>{title}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
