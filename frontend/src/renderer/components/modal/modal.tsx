@@ -1,13 +1,13 @@
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { globalContext } from 'renderer/contexts/globalContext';
 import { ModalProps } from 'renderer/types/types';
 import axios from '../../axios';
 
 export const Modal: React.FC<ModalProps> = (props): JSX.Element => {
   const { state, dispatch } = useContext(globalContext);
-  const { columns, endpoint, getData, dependencies } = props;
+  const { columns, endpoint, getData } = props;
 
   const [data, setData] = useState<object>(() => {
     return columns.reduce((prev: any, act, index) => {
@@ -16,8 +16,12 @@ export const Modal: React.FC<ModalProps> = (props): JSX.Element => {
   });
 
   const handleChange = (e: any) => {
-    const value = e.target.value;
+    let value = e.target.value;
     const name = e.target.name;
+
+    if (e.target.className === 'modal__select')
+      value = value.replace(/:.*/, '');
+
     setData({ ...data, [name]: value });
   };
 
@@ -61,21 +65,55 @@ export const Modal: React.FC<ModalProps> = (props): JSX.Element => {
           {endpoint.replace('/', '').toUpperCase()}
         </h2>
         {columns.map((col, index) => {
+          const isIDPresent = col === Object.keys(state.currentID)[0];
+          if (isIDPresent) {
+            const id = Object.values(state.currentID)[0];
+            data[col] = id;
+          }
+
           return (
             index > 0 && (
               <span className="modal__inputContainer">
                 <label htmlFor={col}>{col}</label>
-                <input
-                  type="text"
-                  placeholder={
-                    state.modalAction === 'create'
-                      ? col
-                      : state.updateFields[col]
-                  }
-                  value={data[col]}
-                  onChange={handleChange}
-                  name={col}
-                />
+                {!col.includes('ID') || isIDPresent ? (
+                  <input
+                    type="text"
+                    placeholder={
+                      state.modalAction === 'create'
+                        ? col
+                        : state.updateFields[col]
+                    }
+                    value={data[col]}
+                    onChange={handleChange}
+                    name={col}
+                    disabled={isIDPresent}
+                  />
+                ) : (
+                  <select
+                    className="modal__select"
+                    onChange={handleChange}
+                    name={col}
+                    defaultValue="default"
+                  >
+                    <option value="default" hidden>
+                      SELECT AN OPTION
+                    </option>
+                    {state.dependencies &&
+                      state.dependencies[col.replace('ID', '')].map(
+                        (item: any) => {
+                          const arr = Object.values(item);
+                          const id = arr[0];
+                          const name = arr[1];
+                          return (
+                            <option style={{ color: 'black' }}>
+                              {/* {JSON.stringify(item).replace(/({|"|})/gm, '')} */}
+                              {`${id}: ${name}`}
+                            </option>
+                          );
+                        }
+                      )}
+                  </select>
+                )}
               </span>
             )
           );
@@ -101,16 +139,16 @@ export const Modal: React.FC<ModalProps> = (props): JSX.Element => {
 //     name={col}
 //   />
 // ) : (
-//   <select style={{ color: 'black' }}>
-//     {dependencies &&
-//       dependencies[
-//         col.replace('ID', '').toLowerCase()
-//       ].object.rows.map((item: any) => {
-//         return (
-//           <option>
-//             {JSON.stringify(item).replace(/({|"|})/gm, '')}
-//           </option>
-//         );
-//       })}
-//   </select>
+// <select style={{ color: 'black' }}>
+//   {dependencies &&
+//     dependencies[
+//       col.replace('ID', '').toLowerCase()
+//     ].object.rows.map((item: any) => {
+//       return (
+//         <option>
+//           {JSON.stringify(item).replace(/({|"|})/gm, '')}
+//         </option>
+//       );
+//     })}
+// </select>
 // )}

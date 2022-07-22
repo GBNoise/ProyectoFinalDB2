@@ -1,48 +1,68 @@
-.dataTable {
-  width: 100%;
-  height: 100%;
-  @include flex-col-center;
-  justify-content: flex-start;
-  overflow: scroll;
+.dataTableContainer {
+  margin-left: 20px;
+  min-width: 200px;
+  max-height: 50%;
+  @include flex-center;
+  position: relative;
 
-  & > :nth-child(even) {
-  }
-
-  & > :nth-child(odd) {
-  }
-
-  li {
-    display: flex;
+  .dataTableContainer__create {
     width: 100%;
-    & > span {
+    position: absolute;
+    height: 40px;
+    bottom: -50px;
+    background: $green;
+    border: none;
+    border-radius: 10px;
+  }
+
+  .dataTable {
+    width: 100%;
+    height: 100%;
+    @include flex-col-center;
+    justify-content: flex-start;
+    overflow: scroll;
+
+    & > :nth-child(even) {
+    }
+
+    & > :nth-child(odd) {
+    }
+
+    li {
       display: flex;
-      flex-basis: 100%;
-      min-width: 150px;
-      min-height: 40px;
-      align-items: center;
-      padding-left: 10px;
+      width: 100%;
       justify-content: space-between;
-
-      span {
-        width: 35px;
+      & > span {
         display: flex;
+        flex-basis: 100%;
+        min-width: 150px;
+        min-height: 40px;
+        overflow-x: scroll;
+        align-items: center;
+        padding-left: 10px;
         justify-content: space-between;
-        margin-right: 15px;
 
-        & > * :hover {
-          color: pink;
+        span {
+          width: 35px;
+          display: flex;
+          justify-content: space-between;
+          margin-right: 15px;
+
+          & > * :hover {
+            color: pink;
+          }
         }
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.5);
       }
     }
 
-    &:hover {
-      background: rgba(0, 0, 0, 0.5);
+    & > :first-child {
+      background: rgb(255, 255, 255, 0.1);
+      border-radius: 10px;
+      position: sticky;
     }
-  }
-
-  & > :first-child {
-    background: rgb(255, 255, 255, 0.1);
-    border-radius: 10px;
-    position: sticky;
   }
 }

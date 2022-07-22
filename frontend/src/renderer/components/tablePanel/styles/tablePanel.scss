@@ -1,30 +1,53 @@
 .productores {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-wrap: wrap;
-  flex-flow: column wrap;
-  justify-content: space-between;
+  @include panel;
   .stats {
-    min-width: fit-content;
+    max-width: 300px;
     min-height: 100%;
-    @include flex-col-center;
-  }
+    @include flex-col;
 
-  .dataTableContainer {
-    margin-left: 20px;
-    min-width: 900px;
-    max-height: 50%;
-    @include flex-center;
-    position: relative;
-    .dataTableContainer__create {
+    .search {
       width: 100%;
-      position: absolute;
-      height: 40px;
-      bottom: -50px;
-      background: $green;
-      border: none;
-      border-radius: 10px;
+      margin-top: 20px;
+      height: fit-content;
+      @include flex-col-center;
+
+      input {
+        background: none;
+        border: none;
+        width: 100%;
+        padding-left: 10px;
+        height: 35px;
+        font-size: 1rem;
+        border-radius: 5px;
+
+        &::placeholder {
+          color: #fff;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .search__list {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 10px;
+        background: pink;
+        min-height: 10px;
+        overflow: scroll;
+        border-radius: 10px;
+        max-height: 300px;
+        li {
+          max-width: 300px;
+          word-wrap: break-word;
+          padding: 10px;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.4);
+          }
+        }
+      }
     }
   }
 

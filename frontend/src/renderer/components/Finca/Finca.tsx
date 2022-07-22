@@ -13,7 +13,7 @@ import { globalContext } from 'renderer/contexts/globalContext';
 const icons: IconButtonProps[] = [
   { color: colors.pinkAccent, size: '2x', icon: faUser, to: '/productores' },
   { color: colors.redAccent, size: '2x', icon: faTractor, to: '/finca' },
-  { color: colors.salmonAccent, size: '2x', icon: faWheatAlt, to: '/other' },
+  { color: colors.salmonAccent, size: '2x', icon: faWheatAlt, to: '/lote' },
 ];
 
 export const Finca = () => {
@@ -51,7 +51,7 @@ export const Finca = () => {
       columns={state.currentData.object.columns}
       count={state.currentData.object.rows.length}
       icon={faUser}
-      color={colors.salmonAccent}
+      color={colors.redAccent}
       title="Fincas"
       endpoint="/finca"
       getData={getData}

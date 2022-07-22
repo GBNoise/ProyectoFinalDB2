@@ -33,6 +33,7 @@ export interface DataTableProps {
   endpoint: string;
   getData: Function;
   dependencies?: object;
+  color: string;
 }
 
 export interface TablePanelProps extends DataTableProps, DashboardCounterProps {
@@ -54,6 +55,11 @@ export interface ServerResponse {
     from: string;
   };
   statusCode: number;
+}
+
+export interface InfoPanelProps {
+  icon: IconDefinition;
+  color: string;
 }
 
 export enum colors {

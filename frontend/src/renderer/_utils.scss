@@ -42,3 +42,12 @@ $salmonAccent: #ff7c56;
   top: $navbarHeight;
   padding: 10px;
 }
+
+@mixin panel {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}

@@ -8,7 +8,7 @@ import axios from '../../axios';
 import { useNavigate } from 'react-router-dom';
 
 export const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
-  const { data, columns, endpoint, getData, dependencies } = props;
+  const { data, columns, endpoint, getData, color } = props;
   const { state, dispatch } = useContext(globalContext);
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ export const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
   };
 
   return (
-    <>
+    <div className="dataTableContainer">
       <ul className="dataTable">
         <li className="dataTable__columns">
           {columns.map((column) => {
@@ -46,18 +46,22 @@ export const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
                         icon={faPen}
                         size="sm"
                         className="dataTable__btn"
-                        onClick={() =>
+                        onClick={(e) => {
+                          e.stopPropagation();
                           dispatch({
                             type: 'open modal',
                             payload: { action: 'update', update: object },
-                          })
-                        }
+                          });
+                        }}
                       />
                       <FontAwesomeIcon
                         icon={faTrash}
                         size="sm"
                         className="dataTable__btn"
-                        onClick={() => handleDelete(Object.values(object)[0])}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(Object.values(object)[0]);
+                        }}
                       />
                     </span>
                   )}
@@ -67,14 +71,16 @@ export const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
           );
         })}
       </ul>
+      <button
+        className="dataTableContainer__create"
+        style={{ backgroundColor: color }}
+        onClick={() => dispatch({ type: 'open modal', payload: 'create' })}
+      >
+        CREATE
+      </button>
       {state.isModalOpen && (
-        <Modal
-          columns={columns}
-          endpoint={endpoint}
-          getData={getData}
-          dependencies={dependencies}
-        />
+        <Modal columns={columns} endpoint={endpoint} getData={getData} />
       )}
-    </>
+    </div>
   );
 };

@@ -1,0 +1,37 @@
+$borderRadius: 20px;
+$padding: 20px;
+
+.infoPanel {
+  @include panel;
+  .infoPanel__profile {
+    height: 50%;
+    width: 30%;
+    border-radius: $borderRadius;
+
+    padding: $padding;
+    @include flex-col-center;
+    overflow: hidden;
+
+    .infoPanel__icon {
+      width: 100%;
+      height: 35%;
+      @include flex-center;
+    }
+
+    .infoPanel__data {
+      p {
+        font-size: rem;
+      }
+    }
+  }
+
+  .infoPanel__references {
+    width: 65%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: $borderRadius;
+    padding: $padding;
+    overflow: scroll;
+    @include flex-col;
+  }
+}

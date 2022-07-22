@@ -28,6 +28,9 @@
     border-radius: 20px;
     border: solid 2px $darkGray;
     @include flex-col-center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
     overflow: scroll;
     .modal__inputContainer {
       min-width: 500px;

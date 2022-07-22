@@ -6,6 +6,9 @@ interface InitialState {
   modalAction: string;
   currentData: ServerResponse;
   updateFields: object;
+  references: object;
+  currentID: object;
+  dependencies: object;
 }
 
 export const initialState: InitialState = {
@@ -18,6 +21,9 @@ export const initialState: InitialState = {
     statusCode: 0,
   },
   updateFields: {},
+  references: {},
+  currentID: {},
+  dependencies: {},
 };
 
 export const reducer = (state: any, action: any) => {
@@ -49,5 +55,23 @@ export const reducer = (state: any, action: any) => {
 
     case 'setUpdateFields':
       return { ...state, updateFields: action.payload };
+
+    case 'setReferences':
+      return { ...state, references: { ...action.payload } };
+
+    case 'setCurrentID':
+      return { ...state, currentID: action.payload };
+
+    case 'dismiss currentID':
+      return { ...state, currentID: {} };
+
+    case 'setDependencies':
+      return {
+        ...state,
+        dependencies: { ...state.dependencies, ...action.payload },
+      };
+
+    case 'dismiss dependencies':
+      return { ...state, dependencies: {} };
   }
 };

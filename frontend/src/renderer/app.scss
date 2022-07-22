@@ -7,6 +7,7 @@
 @import './components/Productores/styles/Productores.scss';
 @import './components/tablePanel/styles/tablePanel.scss';
 @import './components/modal/styles/modal.scss';
+@import './components/infoPanel/styles/infoPanel.scss';
 @import './utils';
 
 * {
@@ -38,6 +39,8 @@ button {
   background: $darkerGray;
   @include flex-col;
   padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
