@@ -18,6 +18,7 @@ import { TipoDeMoneda } from './components/TipoDeMoneda';
 import { Bodegas } from './components/Bodegas';
 import { Inventarios } from './components/Inventarios';
 import { Proveedores } from './components/Proveedores';
+import { Cheques } from './components/Cheques';
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/bodega" element={<Bodegas />} />
           <Route path="/inventario" element={<Inventarios />} />
           <Route path="/proveedores" element={<Proveedores />} />
+          <Route path="/cheques" element={<Cheques />} />
         </Routes>
       </GlobalContext>
     </Router>
