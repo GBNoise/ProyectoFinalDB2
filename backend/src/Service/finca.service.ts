@@ -36,6 +36,14 @@ export const createFinca = (
   return executeInsert(DBTables.Finca, finca);
 };
 
+export const getFincaByProductorID = (id: number): Promise<ServerResponse> => {
+  return executeSelect({
+    from: DBTables.Finca,
+    whereFK: id,
+    reference: DBTables.Productor,
+  });
+};
+
 export const deleteFincaWithID = (id: number): Promise<ServerResponse> => {
   return executeDeleteWhereID(DBTables.Finca, id);
 };

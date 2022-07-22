@@ -6,6 +6,7 @@ import {
   getAllFincas,
   getFincaByID,
   getFincaByNombre,
+  getFincaByProductorID,
   updateFincaWithID,
 } from "../Service/finca.service.js";
 
@@ -32,6 +33,19 @@ const getProductorByIDRoute = async (req: Request, res: Response) => {
   }
 };
 router.get("/:ProductorID", getProductorByIDRoute);
+
+const getFincaByProductorIDRoute = async (req: Request, res: Response) => {
+  try {
+    const { ProductorID } = req.params;
+    const response: ServerResponse = await getFincaByProductorID(
+      parseInt(ProductorID)
+    );
+    return res.status(response.statusCode).send(response);
+  } catch (e) {
+    return res.status(500).send(e);
+  }
+};
+router.get("/productor/:ProductorID", getFincaByProductorIDRoute);
 
 const getProductorByNombreRoute = async (req: Request, res: Response) => {
   try {
