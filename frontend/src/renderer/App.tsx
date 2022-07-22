@@ -15,6 +15,8 @@ import { Cliente } from './components/Clientes';
 import { Bancos } from './components/Bancos';
 import { CuentasBancarias } from './components/CuentasBancarias';
 import { TipoDeMoneda } from './components/TipoDeMoneda';
+import { Bodegas } from './components/Bodegas';
+import { Inventarios } from './components/Inventarios';
 
 export default function App() {
   return (
@@ -36,6 +38,8 @@ export default function App() {
           <Route path="/bancos" element={<Bancos />} />
           <Route path="/cuentasbancarias" element={<CuentasBancarias />} />
           <Route path="/tipodemoneda" element={<TipoDeMoneda />} />
+          <Route path="/bodega" element={<Bodegas />} />
+          <Route path="/inventario" element={<Inventarios />} />
         </Routes>
       </GlobalContext>
     </Router>
