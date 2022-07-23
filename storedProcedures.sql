@@ -79,9 +79,25 @@ as
     delete from Producto where ProductoID = @id
 go
 
-CREATE PROCEDURE spProductoUpdate @id int, @nombre(100), @tipoDeSueloID int
+CREATE PROCEDURE spProductoUpdate @id int, @nombre varchar(100), @tipoDeSueloID int
 as
     update Producto set Nombre = @nombre, ProdcutoID = @productoID
     where Producto = @id
 go
 
+-- Lote
+CREATE PROCEDURE spLoteInsert @extension varchar(30), @cantidadDeCosechas int, @tipoDeSueloID int, @tipoDeRiegoID int, @productoID int, @fincaID int
+as
+    insert into Lote values (@extension,@cantidadDeCosechas,@tipoDeSueloID,@tipoDeRiegoID,@productoID);
+go
+
+CREATE PROCEDURE spLoteDelete @id int
+as 
+    delete from Lote where LoteID = @id
+go
+
+CREATE PROCEDURE spLoteUpdate @id int, @extension varchar(30), @cantidadDeCosechas int, @tipoDeSueloID int, @tipoDeRiegoID int, @productoID int
+as
+    update Lote set Extension = @extension, CantidadDeCosechas = @cantidadDeCosechas, TipoDeSueloID = @tipoDeSueloID, TipoDeRiegoID = @tipoDeRiegoID, ProductoID = @productoID
+    where Lote = @id
+go
