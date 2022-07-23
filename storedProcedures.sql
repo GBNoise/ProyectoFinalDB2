@@ -68,3 +68,20 @@ as
     where Finca = @id
 go
 
+-- Producto
+CREATE PROCEDURE spProductoInsert @nombre varchar(100), @tipoDeSueloID int
+as 
+    insert into Producto values (@nombre,@tipoDeSueloID);
+go
+
+CREATE PROCEDURE spProductoDelete @id int
+as
+    delete from Producto where ProductoID = @id
+go
+
+CREATE PROCEDURE spProductoUpdate @id int, @nombre(100), @tipoDeSueloID int
+as
+    update Producto set Nombre = @nombre, ProdcutoID = @productoID
+    where Producto = @id
+go
+
