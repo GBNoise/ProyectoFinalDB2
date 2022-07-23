@@ -110,11 +110,28 @@ go
 
 CREATE PROCEDURE spClienteDelete @id int
 as
-    delete from Cliente where  BancoID = @id
+    delete from Cliente where  ClienteID = @id
 go
 
 CREATE PROCEDURE spClienteUpdate @id int, @nombre varchar(100)
 as
     update Cliente set Nombre = @nombre
     where Cliente = @id
+go
+
+--Banco
+CREATE PROCEDURE spBancoInsert @nombre varchar(100)
+as
+    insert into Banco values (@nombre);
+go
+
+CREATE PROCEDURE spBancoDelete @id int
+as
+    delete from Banco where BancoID = @id
+go
+
+CREATE PROCEDURE spBancoUpdate @id int, @nombre varchar(100)
+as
+    update Banco set Nombre = @nombre
+    where Banco = @id
 go
