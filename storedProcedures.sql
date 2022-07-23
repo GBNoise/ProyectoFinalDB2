@@ -33,3 +33,20 @@ AS
     update TipoDeSuelo set Nombre = @nombre, Descripcion = @descripcion
     where TipoDeSueloID = @id
 go
+
+-- Tipo de riego
+CREATE PROCEDURE spTipoDeRiegoInsert @nombre varchar(100), @descripcion varchar (100)
+as
+    insert into TipoDeRiego values (@nombre,@descrripcion);
+go
+
+CREATE PROCEDURE spTipoDeRiegoDelete @id int
+as
+    delete from TipoDeRiego where TipoDeRiegoID = @id
+go
+
+CREATE PROCEDURE spTipoDeRiegoUpdate @id int, @nombre varchar(100), @descripcion varchar(100)
+as 
+    update TipoDeRiego set Nombre = @nombre, Descripcion = @descripcion
+    where TipoDeRiego = @id
+go
