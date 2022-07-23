@@ -170,3 +170,19 @@ as
     where CuentaBancaria = @id
 go
 
+-- Bodega
+CREATE PROCEDURE spBodegaInsert @nombre varchar(100)
+as
+    insert into Bodega values (@nombre);
+go
+
+CREATE PROCEDURE spBodegaDelete @id int
+as
+    delete from Bodega where BodegaID = @id
+go
+
+CREATE PROCEDURE spBodegaUpdate @id int, @nombre varchar(100)
+as 
+    update Bodega set Nombre = @nombre
+    where BodegaID = @id
+go
