@@ -186,3 +186,19 @@ as
     update Bodega set Nombre = @nombre
     where BodegaID = @id
 go
+
+-- Inventario
+CREATE PROCEDURE spInventarioInsert @productoID int, @bodegaID int, @cantidad int
+as
+    insert into Inventario values (@productoID,@bodegaID,@cantidad);
+go
+
+CREATE PROCEDURE spInventarioDelete @id int
+as
+    delete from Inventario where InventarioID = @id
+go
+
+CREATE PROCEDURE spInventarioUpdate @id int, @bodegaID int, @cantidad int 
+as
+    update Inventario set BodegaID = @bodegaID, ProductoID = @productoID, Cantidad = @cantidad
+go
