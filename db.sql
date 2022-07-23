@@ -76,8 +76,13 @@ CREATE TABLE Cliente(
 
 CREATE TABLE Banco(
     BancoID int IDENTITY(1,1),
-    Nombre varchar(100) unique not null
+    Nombre varchar(100) unique not null,
+    CONSTRAINT pkBanco 
+        PRIMARY KEY(BancoID)
 )
+
+-- alter table Banco add     CONSTRAINT pkBanco 
+--         PRIMARY KEY(BancoID)
 
 CREATE TABLE TipoDeMoneda(
     TipoDeMonedaID int IDENTITY(1,1),
@@ -89,11 +94,21 @@ CREATE TABLE CuentaBancaria(
     CuentaBancariaID int IDENTITY(1,1),
     NumeroDeCuenta int not null,
     TipoDeMonedaID int not null,
+    BancoID int not null,
     CONSTRAINT pkCuentaBancaria PRIMARY KEY(CuentaBancariaID),
     CONSTRAINT fkCuentaBancariaTipoDeMoneda 
         FOREIGN KEY(TipoDeMonedaID)
-            REFERENCES TipoDeMoneda
+            REFERENCES TipoDeMoneda,
+    CONSTRAINT fkCuentaBancariaBanco 
+        FOREIGN KEY(BancoID)
+            REFERENCES Banco
 )
+
+-- alter table CuentaBancaria
+--     -- ADD BancoID int not null
+--     ADD CONSTRAINT fkCuentaBancariaBanco
+--         FOREIGN KEY(BancoID)
+--             REFERENCES Banco
 
 CREATE TABLE Bodega(
     BodegaID int IDENTITY(1,1),
