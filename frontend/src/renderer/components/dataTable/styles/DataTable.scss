@@ -1,9 +1,9 @@
 .dataTableContainer {
   margin-left: 20px;
-  min-width: 200px;
-  max-height: 50%;
+  max-width: 900px;
   @include flex-center;
   position: relative;
+  max-height: 50%;
 
   .dataTableContainer__create {
     width: 100%;
@@ -16,21 +16,16 @@
   }
 
   .dataTable {
-    width: 100%;
+    min-width: 900px;
     height: 100%;
     @include flex-col-center;
     justify-content: flex-start;
     overflow: scroll;
-
-    & > :nth-child(even) {
-    }
-
-    & > :nth-child(odd) {
-    }
+    align-items: flex-start;
 
     li {
       display: flex;
-      width: 100%;
+      min-width: 900px;
       justify-content: space-between;
       & > span {
         display: flex;
@@ -62,7 +57,6 @@
     & > :first-child {
       background: rgb(255, 255, 255, 0.1);
       border-radius: 10px;
-      position: sticky;
     }
   }
 }
