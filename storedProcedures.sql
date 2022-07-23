@@ -270,3 +270,20 @@ as
     where VentaID = @id
 go
 
+
+--Deposito
+CREATE PROCEDURE spDepositoInsert @cuentaBancariaID int, @descripcion varchar(100), @valor float, @fecha date, @tipo varchar
+as
+    insert into Deposito values (@cuentaBancariaID, @descripcion, @valor, @fecha, @tipo)
+go
+
+CREATE PROCEDURE spDepositoDelete @id int
+as
+    delete from Deposito where @DepositoID = @id
+go
+
+CREATE PROCEDURE spDepositoUpdate @id int, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @fecha date, @tipo varchar
+as
+    update Deposito set CuentaBancariaID = @cuentaBancariaID, Descripcion = @descripcion, Valor = @valor, Fecha = @fecha, Tipo = @tipo
+    where DepositoID = @id
+go
