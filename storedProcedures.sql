@@ -249,5 +249,24 @@ go
 
 CREATE PROCEDURE spCompraUpdate @id int, @fecha date, @proveedorID int, @productoID int, @cantidad int, @costo float, @isv float, @total float, @tipo varchar, @semanasDePlazo int
 as
+    update Compra set Fecha =@fecha, ProveedorID = @proveedorID, ProductoID = @productoID, Cantidad = @cantidad, Costo = @costo, ISV = @isv, Total = @total, Tipo = @tipo, SemanasDePlazo = @semanasDePlazogo
+    where CompraID = @id
+go
 
+--Venta
+CREATE PROCEDURE spVentaInsert @fecha date, @productoID int, @cantidad int, @valor float, @isv float, @extra float, @tipo varchar, @proveedorID int, @clienteID int
+as
+    insert into Venta values (@fecha,@productoID,@cantidad,@valor,@isv,@extra,@tipo,@proveedorID,@clienteID);
+go
+
+CREATE PROCEDURE spVentaDelete @id int
+as
+    delete from Venta where VentaID = @id
+go
+
+CREATE PROCEDURE spVentaUpdate @id int, @fecha date, @productoID int, @cantidad int, @valor float, @isv float, @extra float, @tipo varchar, @proveedorID int, @clienteID int
+as
+    update Venta set Fecha = @fecha, ProductoID = @productoID, Cantida = @cantidad, Valor = @valor, ISV = @isv,Extra = @extra, Tipo = @tipo, ProveedorID = @proveedorID, ClienteID = @clienteID
+    where VentaID = @id
+go
 
