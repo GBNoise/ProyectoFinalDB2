@@ -42,6 +42,16 @@ export const CuentasBancarias = () => {
         })
       )
       .catch((e) => console.log(e));
+
+    await axios
+      .get('/banco')
+      .then((res) =>
+        dispatch({
+          type: 'setDependencies',
+          payload: { Banco: res.data.object.rows },
+        })
+      )
+      .catch((e) => console.log(e));
   };
 
   useEffect(() => {

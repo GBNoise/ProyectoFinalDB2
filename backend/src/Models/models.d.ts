@@ -67,6 +67,7 @@ export type Banco = {
 export type TipoDeMoneda = {
   TipoDeMonedaID?: number;
   Nombre: string;
+  BancoID: number;
 };
 
 export type CuentaBancaria = {
