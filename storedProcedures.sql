@@ -48,7 +48,7 @@ go
 CREATE PROCEDURE spTipoDeRiegoUpdate @id int, @nombre varchar(100), @descripcion varchar(100)
 as 
     update TipoDeRiego set Nombre = @nombre, Descripcion = @descripcion
-    where TipoDeRiego = @id
+    where TipoDeRiegoID = @id
 go
 
 -- Finca
@@ -62,10 +62,10 @@ as
     delete from Finca where FincaID = @id
 go
 
-CREATE PROCEDURE spFincaUpdate @id int, @nombre(100), @productorID int
+CREATE PROCEDURE spFincaUpdate @id int, @nombre varchar(100), @productorID int
 as
     update Finca set Nombre = @nombre, ProductorID = @productorID
-    where Finca = @id
+    where FincaID = @id
 go
 
 -- Producto
@@ -82,7 +82,7 @@ go
 CREATE PROCEDURE spProductoUpdate @id int, @nombre varchar(100), @tipoDeSueloID int
 as
     update Producto set Nombre = @nombre, ProdcutoID = @productoID
-    where Producto = @id
+    where ProductoID = @id
 go
 
 -- Lote
@@ -99,7 +99,7 @@ go
 CREATE PROCEDURE spLoteUpdate @id int, @extension varchar(30), @cantidadDeCosechas int, @tipoDeSueloID int, @tipoDeRiegoID int, @productoID int
 as
     update Lote set Extension = @extension, CantidadDeCosechas = @cantidadDeCosechas, TipoDeSueloID = @tipoDeSueloID, TipoDeRiegoID = @tipoDeRiegoID, ProductoID = @productoID
-    where Lote = @id
+    where LoteID = @id
 go
 
 -- Cliente
@@ -116,7 +116,7 @@ go
 CREATE PROCEDURE spClienteUpdate @id int, @nombre varchar(100)
 as
     update Cliente set Nombre = @nombre
-    where Cliente = @id
+    where ClienteID = @id
 go
 
 --Banco
@@ -133,7 +133,7 @@ go
 CREATE PROCEDURE spBancoUpdate @id int, @nombre varchar(100)
 as
     update Banco set Nombre = @nombre
-    where Banco = @id
+    where BancoID = @id
 go
 
 --Tipo de moneda
@@ -150,7 +150,7 @@ go
 CREATE PROCEDURE spTipoDeMonedaUpdate @id int, @nombre varchar(100)
 as
     update TipoDeMoneda set Nombre = @nombre
-    where TipoDeMoneda = @id
+    where TipoDeMonedaID = @id
 go
 
 --Cuenta bancaria
@@ -167,7 +167,7 @@ go
 CREATE PROCEDURE spCuentaBancariaUpdate @id int, @numeroDeCuenta int, @tipoDeMonedaID int, @bancoID int
 as
     update CuentaBancaria set NumeroDeCuenta = @numeroDeCuenta, TipoDeMonedaID = @tipoDeMonedaID, BancoID = @bancoID
-    where CuentaBancaria = @id
+    where CuentaBancariaID = @id
 go
 
 -- Bodega
@@ -198,7 +198,7 @@ as
     delete from Inventario where InventarioID = @id
 go
 
-CREATE PROCEDURE spInventarioUpdate @id int, @bodegaID int, @cantidad int 
+CREATE PROCEDURE spInventarioUpdate @id int,@productoID int, @bodegaID int, @cantidad int 
 as
     update Inventario set BodegaID = @bodegaID, ProductoID = @productoID, Cantidad = @cantidad
 go
@@ -216,6 +216,6 @@ go
 
 CREATE PROCEDURE spProveedorUpdate @id int, @nombre varchar(100)
 as
-    update Proveedor set ProveedorID = @id, Nombre = @nombre
+    update Proveedor set Nombre = @nombre where ProveedorID = @id
 go
 
