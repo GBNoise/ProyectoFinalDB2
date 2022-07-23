@@ -49,7 +49,19 @@ as
     end
 go
 
+CREATE FUNCTION dbo.getBodegaWithMostProducts()
+returns int
+as
+    begin
+        declare @id int
 
+        SELECT TOP 1 @id=BodegaID from Inventario
+        GROUP BY BodegaID
+        ORDER BY SUM(Cantidad) DESC
+
+        RETURN @id
+    end
+GO
 
 
 
