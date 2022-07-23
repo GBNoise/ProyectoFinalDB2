@@ -135,3 +135,20 @@ as
     update Banco set Nombre = @nombre
     where Banco = @id
 go
+
+--Tipo de moneda
+CREATE PROCEDURE spTipoDeMoneda @nombre varchar (100)
+as
+    insert into TipoDeMoneda values (@nombre);
+go
+
+CREATE PROCEDURE spTipoDeMonedaDelete @id int
+as
+    delete from TipoDeMoneda where TipoDeMonedaID = @id
+go
+
+CREATE PROCEDURE spTipoDeMonedaUpdate @id int, @nombre varchar(100)
+as
+    update TipoDeMoneda set Nombre = @nombre
+    where TipoDeMoneda = @id
+go
