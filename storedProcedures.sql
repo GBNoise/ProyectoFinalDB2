@@ -137,7 +137,7 @@ as
 go
 
 --Tipo de moneda
-CREATE PROCEDURE spTipoDeMoneda @nombre varchar (100)
+CREATE PROCEDURE spTipoDeMonedaInsert @nombre varchar (100)
 as
     insert into TipoDeMoneda values (@nombre);
 go
@@ -151,4 +151,27 @@ CREATE PROCEDURE spTipoDeMonedaUpdate @id int, @nombre varchar(100)
 as
     update TipoDeMoneda set Nombre = @nombre
     where TipoDeMoneda = @id
+go
+
+--Cuenta bancaria
+CREATE PROCEDURE spCuentaBancariaInsert @numeroDeCuenta int, @tipoDeMonedaID int, @bancoID int
+as
+    insert into CuentaBancaria values (@numeroDeCuenta,@tipoDeMonedaID,@bancoID);
+go
+
+CREATE PROCEDURE spCuentaBancariaDelete @id int
+as
+    delete from CuentaBancaria where CuentaBancaria = @id
+go
+
+CREATE PROCEDURE spCuentaBancariaUpdate @id int, @numeroDeCuenta int, @tipoDeMonedaID int, @bancoID int
+as
+    update CuentaBancaria set NumeroDeCuenta = @numeroDeCuenta, TipoDeMonedaID = @tipoDeMonedaID, BancoID = @bancoID
+    where CuentaBancaria = @id
+go
+
+CREATE PROCEDURE spCuentaBancariaUpdate @id int, @numeroDeCuenta int, @tipoDeMonedaID int, @bancoID int
+as 
+    update CuentaBancaria set NumeroDeCuenta = @numeroDeCuenta, TipoDeMonedaID = @tipoDeMonedaID, BancoID = @bancoID
+    where CuentaBancaria = @id
 go
