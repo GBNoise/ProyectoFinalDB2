@@ -219,3 +219,20 @@ as
     update Proveedor set Nombre = @nombre where ProveedorID = @id
 go
 
+--Cheque
+CREATE PROCEDURE spChequeInsert @fecha date, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @proveedorID int, @productorID int, @estado varchar, @tipo varchar
+as
+    insert into Cheque values (@cuentaBancariaID,@descripcion,@fecha,@valor,@proveedorID,@productorID,@estado,@tipo);
+go
+
+CREATE PROCEDURE spChequeDelete @id int
+as
+    delete from Cheque where ChequeID = @id
+go
+
+CREATE PROCEDURE spChequeUpdate @id int, @fecha date, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @proveedorID int, @productorID int, @estado varchar, @tipo varchar
+as 
+    update Cheque set Fecha = @fecha, CuentaBancariaID = @cuentaBancariaID, Descripcion = @descripcion, Valor = @valor, ProveedorID = @proveedorID, ProductorID = @productorID, Estado = @estadoID, Tipo = @tipo
+    where ChequeID = @id
+go
+
