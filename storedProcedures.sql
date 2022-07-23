@@ -101,3 +101,20 @@ as
     update Lote set Extension = @extension, CantidadDeCosechas = @cantidadDeCosechas, TipoDeSueloID = @tipoDeSueloID, TipoDeRiegoID = @tipoDeRiegoID, ProductoID = @productoID
     where Lote = @id
 go
+
+-- Cliente
+CREATE PROCEDURE spClienteInsert @nombre varchar(100)
+as
+    insert into Cliente values (@nombre);
+go
+
+CREATE PROCEDURE spClienteDelete @id int
+as
+    delete from Cliente where  BancoID = @id
+go
+
+CREATE PROCEDURE spClienteUpdate @id int, @nombre varchar(100)
+as
+    update Cliente set Nombre = @nombre
+    where Cliente = @id
+go
