@@ -170,8 +170,3 @@ as
     where CuentaBancaria = @id
 go
 
-CREATE PROCEDURE spCuentaBancariaUpdate @id int, @numeroDeCuenta int, @tipoDeMonedaID int, @bancoID int
-as 
-    update CuentaBancaria set NumeroDeCuenta = @numeroDeCuenta, TipoDeMonedaID = @tipoDeMonedaID, BancoID = @bancoID
-    where CuentaBancaria = @id
-go
