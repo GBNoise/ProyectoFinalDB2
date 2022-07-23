@@ -222,7 +222,7 @@ go
 --Cheque
 CREATE PROCEDURE spChequeInsert @fecha date, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @proveedorID int, @productorID int, @estado varchar, @tipo varchar
 as
-    insert into Cheque values (@cuentaBancariaID,@descripcion,@fecha,@valor,@proveedorID,@productorID,@estado,@tipo);
+    insert into Cheque values (@fecha,@cuentaBancariaID,@descripcion,@valor,@proveedorID,@productorID,@estado,@tipo);
 go
 
 CREATE PROCEDURE spChequeDelete @id int
@@ -236,4 +236,18 @@ as
     where ChequeID = @id
 go
 
--- hola
+--Compra
+CREATE PROCEDURE spCompraInsert @fecha date, @proveedorID int, @productoID int, @cantidad int, @costo float, @isv float, @total float, @tipo varchar, @semanasDePlazo int
+as
+    insert into Compra values (@fecha, @proveedorID, @productoID, @cantidad, @costo, @isv, @total, @tipo, @semanasDePlazo);
+go
+
+CREATE procedure spCompraDelete @id int
+as
+    delete from Compra where CompraID = @id
+go
+
+CREATE PROCEDURE spCompraUpdate @id int, @fecha date, @proveedorID int, @productoID int, @cantidad int, @costo float, @isv float, @total float, @tipo varchar, @semanasDePlazo int
+as
+
+
