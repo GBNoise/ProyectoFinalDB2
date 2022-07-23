@@ -202,3 +202,20 @@ CREATE PROCEDURE spInventarioUpdate @id int, @bodegaID int, @cantidad int
 as
     update Inventario set BodegaID = @bodegaID, ProductoID = @productoID, Cantidad = @cantidad
 go
+
+--Proveedor
+CREATE PROCEDURE spProveedorInsert @nombre varchar(100)
+as
+    insert into Proveedor values (@nombre);
+go
+
+CREATE PROCEDURE spProveedorDelete @id int
+as
+    delete from Proveedor  where ProveedorID = @id
+go
+
+CREATE PROCEDURE spProveedorUpdate @id int, @nombre varchar(100)
+as
+    update Proveedor set ProveedorID = @id, Nombre = @nombre
+go
+
