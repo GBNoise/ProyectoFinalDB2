@@ -37,7 +37,7 @@ go
 -- Tipo de riego
 CREATE PROCEDURE spTipoDeRiegoInsert @nombre varchar(100), @descripcion varchar (100)
 as
-    insert into TipoDeRiego values (@nombre,@descrripcion);
+    insert into TipoDeRiego values (@nombre,@descripcion);
 go
 
 CREATE PROCEDURE spTipoDeRiegoDelete @id int
@@ -50,3 +50,21 @@ as
     update TipoDeRiego set Nombre = @nombre, Descripcion = @descripcion
     where TipoDeRiego = @id
 go
+
+-- Finca
+CREATE PROCEDURE spFincaInsert @nombre varchar(100), @productorID int
+as
+    insert into Finca values (@nombre,@productorID);
+go
+
+CREATE PROCEDURE spFincaDelete @id int
+as
+    delete from Finca where FincaID = @id
+go
+
+CREATE PROCEDURE spFincaUpdate @id int, @nombre(100), @productorID int
+as
+    update Finca set Nombre = @nombre, ProductorID = @productorID
+    where Finca = @id
+go
+
