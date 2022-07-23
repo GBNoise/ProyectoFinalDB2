@@ -81,7 +81,7 @@ go
 
 CREATE PROCEDURE spProductoUpdate @id int, @nombre varchar(100), @tipoDeSueloID int
 as
-    update Producto set Nombre = @nombre, ProdcutoID = @productoID
+    update Producto set Nombre = @nombre, TipoDeSueloID = @tipoDeSueloID
     where ProductoID = @id
 go
 
@@ -230,7 +230,7 @@ as
     delete from Cheque where ChequeID = @id
 go
 
-CREATE PROCEDURE spChequeUpdate @id int, @fecha date, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @proveedorID int, @productorID int, @estado varchar, @tipo varchar
+CREATE PROCEDURE spChequeUpdate @id int, @fecha date, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @proveedorID int, @productorID int, @estadoID varchar, @tipo varchar
 as 
     update Cheque set Fecha = @fecha, CuentaBancariaID = @cuentaBancariaID, Descripcion = @descripcion, Valor = @valor, ProveedorID = @proveedorID, ProductorID = @productorID, Estado = @estadoID, Tipo = @tipo
     where ChequeID = @id
@@ -249,7 +249,7 @@ go
 
 CREATE PROCEDURE spCompraUpdate @id int, @fecha date, @proveedorID int, @productoID int, @cantidad int, @costo float, @isv float, @total float, @tipo varchar, @semanasDePlazo int
 as
-    update Compra set Fecha =@fecha, ProveedorID = @proveedorID, ProductoID = @productoID, Cantidad = @cantidad, Costo = @costo, ISV = @isv, Total = @total, Tipo = @tipo, SemanasDePlazo = @semanasDePlazogo
+    update Compra set Fecha =@fecha, ProveedorID = @proveedorID, ProductoID = @productoID, Cantidad = @cantidad, Costo = @costo, ISV = @isv, Total = @total, Tipo = @tipo, SemanasDePlazo = @semanasDePlazo
     where CompraID = @id
 go
 
@@ -279,7 +279,7 @@ go
 
 CREATE PROCEDURE spDepositoDelete @id int
 as
-    delete from Deposito where @DepositoID = @id
+    delete from Deposito where DepositoID = @id
 go
 
 CREATE PROCEDURE spDepositoUpdate @id int, @cuentaBancariaID int, @descripcion varchar(100), @valor float, @fecha date, @tipo varchar
