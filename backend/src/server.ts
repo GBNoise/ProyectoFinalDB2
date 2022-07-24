@@ -1,5 +1,4 @@
-import { Application } from "express";
-import express from "express";
+import express, { Application } from "express";
 import { router as userRouter } from "./Routers/usersRouter";
 import { router as linksRouter } from "./Routers/linksRouter";
 import { router as productorRouter } from "./Routers/productorRouter";
@@ -19,6 +18,7 @@ import { router as chequeRouter } from "./Routers/cheque.router";
 import { router as compraRouter } from "./Routers/compra.router";
 import { router as ventaRouter } from "./Routers/venta.router";
 import { router as depositoRouter } from "./Routers/deposito.router";
+import { router as viewsRouter } from "./Routers/views.router";
 import cors from "cors";
 import { config } from "dotenv";
 
@@ -47,6 +47,7 @@ app.use("/cheque", chequeRouter);
 app.use("/compra", compraRouter);
 app.use("/venta", ventaRouter);
 app.use("/deposito", depositoRouter);
+app.use("/views", viewsRouter);
 
 const PORT = process.env.PORT || 8000;
 
