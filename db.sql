@@ -151,8 +151,12 @@ CREATE TABLE Cheque(
             REFERENCES Proveedor,
     CONSTRAINT fkChequeProductor    
         FOREIGN KEY(ProductorID)
-            REFERENCES Productor
+            REFERENCES Productor,
+    CONSTRAINT fkChequeCuentaBancaria
+        FOREIGN KEY(CuentaBancariaID)
+            REFERENCES CuentaBancaria
 )
+
 
 CREATE TABLE Compra(
     CompraID int IDENTITY(1,1),
