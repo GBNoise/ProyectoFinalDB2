@@ -21,6 +21,7 @@ import { Proveedores } from './components/Proveedores';
 import { Cheques } from './components/Cheques';
 import { Compras } from './components/Compras';
 import { Ventas } from './components/Ventas';
+import { Chart } from './components/Chart';
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/cheques" element={<Cheques />} />
           <Route path="/compras" element={<Compras />} />
           <Route path="/ventas" element={<Ventas />} />
+          <Route path="/chart" element={<Chart />} />
         </Routes>
       </GlobalContext>
     </Router>
