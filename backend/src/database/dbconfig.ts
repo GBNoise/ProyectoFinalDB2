@@ -28,7 +28,10 @@ export const enum DBTables {
   Deposito = "Deposito",
 }
 
-export const enum DBViews {}
+export const enum DBViews {
+  vFinca = "vFinca",
+  vExistenciaBodega = "vExistenciaBodega",
+}
 
 interface DBResponse {
   columns: string[];
