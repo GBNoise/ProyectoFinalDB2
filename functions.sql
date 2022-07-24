@@ -1,3 +1,5 @@
+-- FUNCIONES ESCALARES
+
 -- funcion para obtener el productorID con mas fincas
 CREATE FUNCTION dbo.getProductorWithMostFincas()
 returns int
@@ -138,16 +140,24 @@ go
 CREATE FUNCTION dbo.getLatestDepositoDate()
     returns date
 as
-begin
-    declare @date date
+    begin
+        declare @date date
 
-    select top 1 @date=Fecha from Deposito
-    ORDER BY Fecha, DepositoID DESC
+        select top 1 @date=Fecha from Deposito
+        ORDER BY Fecha, DepositoID DESC
 
-    return @date
-end
+        return @date
+    end
 go
 
 
+-- FUNCIONES TABLA
+
+-- funcion para obtener depositos con una fecha
+CREATE FUNCTION dbo.getDepositosWithFecha(@fecha date)
+returns table
+as
+    return select * from Deposito where Fecha = @fecha
+go
 
 
